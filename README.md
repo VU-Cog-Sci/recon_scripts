@@ -5,7 +5,7 @@ Do all editing and git interaction on the lab laptop, not the user account on th
 
 ## MB_PRF_convert.py
 
-To set up a new subject's conversion, edit this file. Change the subject ID: sub-X and the subfolders that recon should pass through, something like ['su_9400','su_9401'].
+To set up a new subject's reconstruction, edit this file. Change the subject ID: sub-X and the subfolders that recon should pass through, something like ['su_9400','su_9401'].
 
 After saving this file, do
 
@@ -17,3 +17,12 @@ to commit the changes with this message. Then, type
 ```git push```
 
 to upload to github.
+
+## r2ascript.m
+
+To set up a new subject's conversion to nii, edit this file. Change the subject ID path, the `su1` part.
+
+
+```git commit -am 'updated r2ascript.m for subject sub-X'```
+
+

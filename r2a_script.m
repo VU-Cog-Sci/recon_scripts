@@ -3,17 +3,10 @@
 addpath('/home/shared/software/matlab/r2a/');
 
 % Path to scanner output
-%pathToParFiles = ['/Users/martijn/disks/Aeneas_Raw/PRF_7T/data/DE/mri/'];
-%pathToParFiles = ['/home/raw_data/2016/visual/whole_brain_MB_pRF/data/Original_data/Original_Raw_Folder/PRF_7T/data/JW/mri'];
-%pathToParFiles = ['/home/raw_data/2017/visual/Attention/DE/mri/']
-%pathToParFiles = ['/home/raw_data/2017/visual/nPRF/BM/mri/']
-%pathToParFiles = ['/home/raw_data/2017/visual/OriColorMapper/JS/mri/']
-pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_28/sub-02/SU_9300/']
-%pathToParFiles = ['/home/raw_data/2017/visual/sequence_testing/7T_MB_TE/2017_05_16/FR/mri/']
+pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_28/sub-03/su1/']
 
-% if ~exist([options.pathpar 'niftis'],'dir')
-%     mkdir(options.pathpar,'niftis')
-% end
+% T1 or not T1
+T1 = false;
 
 % Options for the conversion
 options.pathpar = pathToParFiles;
@@ -61,6 +54,8 @@ for fii = 1:length(files)
 end
 
 % Gzip for efficiency
-system('gzip niftis/*.nii');
+if ~T1
+    system('gzip niftis/*.nii');
+end
     
     
