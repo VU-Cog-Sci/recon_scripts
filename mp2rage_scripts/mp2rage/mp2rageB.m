@@ -63,9 +63,9 @@ T1map = T1mappingMP2RAGE(inv1,2,6,[0.800 3.700],[7,5],159,0.0062); %note input i
  
 T1M = T1map;T1M.img = T1map.img.*mask;
 
-namen = [name '_T1.nii'];
+namen = [name '_thresh_T1.nii'];
 save_untouch_nii(T1map,namen);
-namen = [name '_T1M.nii'];
+namen = [name '_thresh_T1M.nii'];
 save_untouch_nii(T1M,namen);
 
 %%

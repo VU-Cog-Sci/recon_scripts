@@ -1,9 +1,10 @@
 % Path to r2a
 %this should already be in your path
 addpath('/home/shared/software/matlab/r2a/');
+%addpath(genpath('/home/shared/software/recon/mp2rage_scripts'));
 
 % Path to scanner output
-pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_28/sub-03/su1/']
+pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_30/sub-03/su1/mri/']
 
 % T1 or not T1
 T1 = false;
@@ -56,6 +57,8 @@ end
 % Gzip for efficiency
 if ~T1
     system('gzip niftis/*.nii');
+% else
+% 	mp2rageB();
 end
     
     
