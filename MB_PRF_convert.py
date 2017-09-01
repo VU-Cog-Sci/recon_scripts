@@ -12,7 +12,7 @@ ref_name = 'ref32rfsp47x47x47'
 
 # raw_dir_name = 'DE_20062016' # 'NA_21062016', 'MB_21062016', 'TK_21062016'
 #for raw_dir_name in ['AU_05072016','AV_06072016','BM_06072016','EO_06072016','IV_05072016','JL_06072016']:  #  'MB_21062016', 'TK_21062016']:
-for index, raw_dir_name in enumerate(['su_9400','su_9401']):
+for index, raw_dir_name in enumerate(['wiptrain2','wiptest2']):
     pp = raw_dir_name[:2] + str(index+1)
 
     out_dir = os.path.join(base_dir, pp, 'mri')
@@ -67,7 +67,7 @@ for index, raw_dir_name in enumerate(['su_9400','su_9401']):
     ########################################################################################
 
     # op, err = subprocess.Popen('cp SCANPHYSLOG*.log ../%s/%s/'%(pp, 'hr'), shell=True).communicate()
-    os.system('cp SCANPHYSLOG*.log %s' % hr_dir)
+    #os.system('cp SCANPHYSLOG*.log %s' % hr_dir)
 
     # shutil.copy2(os.path.join(in_dir,'SCANPHYSLOG*.log'), hr_dir)
 
