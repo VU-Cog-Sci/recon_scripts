@@ -4,7 +4,8 @@ addpath('/home/shared/software/matlab/r2a/');
 %addpath(genpath('/home/shared/software/recon/mp2rage_scripts'));
 
 % Path to scanner output
-pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_28/sub-02/SU1/mri/']
+% pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_30/sub-03/su1/mri/']
+pathToParFiles = ['/home/raw_data/2016/visual/whole_brain_MB_pRF/data/sub-016/BK/mri/bids/']
 
 % T1 or not T1
 T1 = false;
@@ -12,7 +13,7 @@ T1 = false;
 % Options for the conversion
 options.pathpar = pathToParFiles;
 options.prefix = '';
-options.angulation=1;
+options.angulation=0;
 options.usefullprefix = 0;
 options.rescale=1;
 options.subaan = 1;
@@ -22,7 +23,7 @@ options.outputformat=1; % 1=nifti, 2 = analyze
 options.dim=4; % 3=3D nii, 4=4D nii
 
 % Find PAR files and make a list of filenames
-files = dir([options.pathpar '*.PAR']);
+files = dir([options.pathpar '*.par']);
 
 if isempty(files)
     files = dir([options.pathpar '*.par']);
