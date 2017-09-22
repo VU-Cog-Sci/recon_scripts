@@ -7,12 +7,13 @@ import copy, glob, shutil
 #base_dir = '/home/raw_data/2016/visual/whole_brain_MB_pRF/data/Original_data/Original_Raw_Folder/PRF_7T/data/'
 #base_dir = '/home/raw_data/2017/visual/Attention/'
 # base_dir = '/home/raw_data/2017/visual/OriColorMapper/'
+# base_dir = '/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_07_06/sub-06/'
 base_dir = '/home/raw_data/2017/visual/nPRF/raw/'
 ref_name = 'ref32rfsp47x47x47'
 
 # raw_dir_name = 'DE_20062016' # 'NA_21062016', 'MB_21062016', 'TK_21062016'
 #for raw_dir_name in ['AU_05072016','AV_06072016','BM_06072016','EO_06072016','IV_05072016','JL_06072016']:  #  'MB_21062016', 'TK_21062016']:
-for index, raw_dir_name in enumerate(['DE_2003']):
+for index, raw_dir_name in enumerate(['DE_2003', 'BM_2100', 'MV_2205']):
     pp = raw_dir_name[:2] + str(index+1)
 
     out_dir = os.path.join(base_dir, pp, 'mri')
@@ -42,56 +43,37 @@ for index, raw_dir_name in enumerate(['DE_2003']):
 
     os.chdir(os.path.join(base_dir, raw_dir_name))
 
-
     ########################################################################################
     ####  take care of the already par/rec B0 map file
     ####  this is the only file we need that was not multiband
     ########################################################################################
 
-    # b0_par = subprocess.Popen('ls *' + 'b0map' +  '*.par', shell=True, stdout=subprocess.PIPE).communicate()[0].split('\n')[-2]
-    # b0_rec = subprocess.Popen('ls *' + 'b0map' +  '*.rec', shell=True, stdout=subprocess.PIPE).communicate()[0].split('\n')[-2]
+    b0_par = glob.glob('*b0map*.par')
+    b0_rec = glob.glob('*b0map*.rec')
 
-
-    b0_par = glob.glob('*b0map*.par')[0]
-    b0_rec = glob.glob('*b0map*.rec')[0]
-
-
-    # retcode = subprocess.call('cp ' + b0_par + ' ' + out_dir, shell=True, bufsize=0)
-    # retcode = subprocess.call('cp ' + b0_rec + ' ' + out_dir, shell=True, bufsize=0)
-
-    shutil.copy2(b0_par, out_dir)
-    shutil.copy2(b0_rec, out_dir)
+    # need a check, had a session without B0 map (GRRRR)
+    if len(b0_par) > 0:
+        shutil.copy2(b0_par[0], out_dir)
+        shutil.copy2(b0_rec[0], out_dir)
 
     ########################################################################################
     ####  take care of physiology data copy
     ########################################################################################
 
-    # op, err = subprocess.Popen('cp SCANPHYSLOG*.log ../%s/%s/'%(pp, 'hr'), shell=True).communicate()
-    #os.system('cp SCANPHYSLOG*.log %s' % hr_dir)
-
-    # shutil.copy2(os.path.join(in_dir,'SCANPHYSLOG*.log'), hr_dir)
-
-    # print(err)
-    # print(op)
-
+    spl = glob.glob(os.path.join(in_dir,'SCANPHYSLOG*.log'))
+    for s in spl:
+        shutil.copy2(s, hr_dir)
 
     ########################################################################################
     #### set up what files we would need (assuming max 10 runs per subject per session)
     #### and compile list of raw and lab files for the mapper and topup files
     ########################################################################################
 
-
-    # raw_files = subprocess.Popen('ls *wip*.raw', shell=True, stdout=subprocess.PIPE).communicate()[0].split('\n')#[0]]# for ms in mapper_ss]
-    # lab_files = subprocess.Popen('ls *wip*.lab', shell=True, stdout=subprocess.PIPE).communicate()[0].split('\n')#[0]]# for ms in mapper_ss]
-
-    raw_files = glob.glob('*wip*.raw')
-    lab_files = glob.glob('*wip*.lab')
+    raw_files = sorted(glob.glob('*wip*sense*.raw'))
+    lab_files = sorted(glob.glob('*wip*sense*.lab'))
 
     print(raw_files)
-
-    # raw_files = [rf for rf in raw_files if rf != '']
-    # lab_files = [lf for lf in lab_files if lf != '']
-
+    print(lab_files)
 
     ########################################################################################
     ####  the all-important reference files, 
@@ -99,12 +81,8 @@ for index, raw_dir_name in enumerate(['DE_2003']):
     ####  as only the last one incorporates the shimming.
     ########################################################################################
 
-    # rrf = subprocess.Popen('ls *' + ref_name +  '*.raw', shell=True, stdout=subprocess.PIPE).communicate()[0].split('\n')[-2]
-    # rlf = subprocess.Popen('ls *' + ref_name +  '*.lab', shell=True, stdout=subprocess.PIPE).communicate()[0].split('\n')[-2]
-
     rrf = glob.glob('*%s*.raw'%ref_name)[0]
     rlf = glob.glob('*%s*.lab'%ref_name)[0]
-
 
     ########################################################################################
     ####  the command to use, with the standard files added 
