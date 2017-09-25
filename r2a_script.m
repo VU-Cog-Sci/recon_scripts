@@ -4,9 +4,9 @@ addpath('/home/shared/software/matlab/r2a/');
 %addpath(genpath('/home/shared/software/recon/mp2rage_scripts'));
 
 % Path to scanner output
-pathToParFiles = ['/home/raw_data/2017/visual/nPRF/raw/MV3/mri/']
+%pathToParFiles = ['/home/raw_data/2017/visual/nPRF/raw/MV3/mri/']
 %pathToParFiles = [ '/home/raw_data/2016/visual/nPRF/sub-012/bk/mri/bids/']
-%pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_28/sub-01/SU1/mri/']
+pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_06_28/sub-02/SU2/mri/']
 %pathToParFiles = ['/home/raw_data/2016/visual/whole_brain_MB_pRF/data/sub-016/BK/mri/bids/']
 
 % T1 or not T1
