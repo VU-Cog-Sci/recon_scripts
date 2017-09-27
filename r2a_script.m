@@ -6,7 +6,7 @@ addpath('/home/shared/software/matlab/r2a/');
 % Path to scanner output
 %pathToParFiles = ['/home/raw_data/2017/visual/nPRF/raw/MV3/mri/']
 %pathToParFiles = [ '/home/raw_data/2016/visual/nPRF/sub-012/bk/mri/bids/']
-pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_07_06/sub-08/su2/mri/']
+pathToParFiles = ['/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_07_07/sub-09/su2/mri/']
 %pathToParFiles = ['/home/raw_data/2016/visual/whole_brain_MB_pRF/data/sub-016/BK/mri/bids/']
 
 % T1 or not T1
