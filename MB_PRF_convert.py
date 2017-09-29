@@ -7,13 +7,13 @@ import copy, glob, shutil
 #base_dir = '/home/raw_data/2016/visual/whole_brain_MB_pRF/data/Original_data/Original_Raw_Folder/PRF_7T/data/'
 #base_dir = '/home/raw_data/2017/visual/Attention/'
 # base_dir = '/home/raw_data/2017/visual/OriColorMapper/'
-base_dir = '/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_07_12/sub-12/'
+base_dir = '/home/raw_data/2017/reward/pearl_7T/scanner_raw/2017_07_13/sub-13/'
 #base_dir = '/home/raw_data/2017/visual/nPRF/raw/'
 ref_name = 'ref32rfsp47x47x47'
 
 # raw_dir_name = 'DE_20062016' # 'NA_21062016', 'MB_21062016', 'TK_21062016'
 #for raw_dir_name in ['AU_05072016','AV_06072016','BM_06072016','EO_06072016','IV_05072016','JL_06072016']:  #  'MB_21062016', 'TK_21062016']:
-for index, raw_dir_name in enumerate(['su_9910','su_9911']):
+for index, raw_dir_name in enumerate(['su_9914','su_9915']):
     pp = raw_dir_name[:2] + str(index+1)
 
     out_dir = os.path.join(base_dir, pp, 'mri')
